@@ -1,5 +1,8 @@
 export interface TodoData {
-  text: string,
-  description?: string,
+  id: string
+  title: string
+  description: string
+  date: Date
+  priority: 'low' | 'medium' | 'high'
   isCompleted: boolean
 }

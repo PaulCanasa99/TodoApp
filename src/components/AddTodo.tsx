@@ -1,16 +1,14 @@
-import {useState} from 'react'
+import { useState } from 'react'
+import { addTodo, selectTodo } from '../store/todoStore';
 
-interface AddTodoProps {
-  addTodo: (text: string) => void
-}
-
-const AddTodo = ({addTodo} : AddTodoProps)  => {
+const AddTodo = ()  => {
   const [value, setValue] = useState('');
 
   const handleAddTodo = () => {
     if (!value) return;
-    addTodo(value);
+    const newTodoId = addTodo(value);
     setValue('');
+    selectTodo(newTodoId);
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -21,7 +19,7 @@ const AddTodo = ({addTodo} : AddTodoProps)  => {
   
   return (
     <div className="flex p-3 text-sm rounded-lg border">
-      <svg onClick={handleAddTodo} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="black" className="flex-none w-6 h-6 m-auto cursor-pointer">
+      <svg onClick={handleAddTodo} data-icon="add" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="black" className="flex-none w-6 h-6 m-auto cursor-pointer">
         <path fillRule="evenodd" d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 0 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1z" clipRule="evenodd" />
       </svg>
       <input 
